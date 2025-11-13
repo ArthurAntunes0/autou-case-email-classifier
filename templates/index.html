@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisador Inteligente de E-mails</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📧 Analisador Inteligente de E-mails</h1>
+            <p class="subtitle">Classifique e-mails e obtenha respostas sugeridas automaticamente</p>
+        </header>
+
+        <main>
+            <div class="form-container">
+                <form id="emailForm">
+                    <div class="input-group">
+                        <label for="emailText">Cole o conteúdo do e-mail:</label>
+                        <textarea 
+                            id="emailText" 
+                            name="email_content" 
+                            rows="10" 
+                            placeholder="Cole aqui o texto do e-mail que deseja analisar..."
+                        ></textarea>
+                    </div>
+
+                    <div class="divider">
+                        <span>OU</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="emailFile">Faça upload de um arquivo (.txt ou .pdf):</label>
+                        <div class="file-input-wrapper">
+                            <input 
+                                type="file" 
+                                id="emailFile" 
+                                name="file" 
+                                accept=".txt,.pdf"
+                            >
+                            <label for="emailFile" class="file-label">
+                                <span class="file-icon">📎</span>
+                                <span class="file-text">Escolher arquivo</span>
+                            </label>
+                            <span class="file-name" id="fileName">Nenhum arquivo selecionado</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <span class="btn-text">Analisar E-mail</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Loader/Spinner -->
+            <div id="loader" class="loader hidden">
+                <div class="spinner"></div>
+                <p>Analisando e-mail...</p>
+            </div>
+
+            <!-- Seção de Resultados -->
+            <div id="results" class="results-container hidden">
+                <h2>Resultados da Análise</h2>
+                
+                <div class="result-card">
+                    <div class="card-header">
+                        <h3>🏷️ Classificação</h3>
+                    </div>
+                    <div class="card-content">
+                        <p id="classification" class="classification-text"></p>
+                    </div>
+                </div>
+
+                <div class="result-card">
+                    <div class="card-header">
+                        <h3>💬 Resposta Sugerida</h3>
+                    </div>
+                    <div class="card-content">
+                        <p id="suggestedResponse" class="response-text"></p>
+                        <button id="copyBtn" class="copy-btn">
+                            <span>📋 Copiar Resposta</span>
+                        </button>
+                    </div>
+                </div>
+
+                <button id="newAnalysisBtn" class="new-analysis-btn">
+                    Nova Análise
+                </button>
+            </div>
+
+            <!-- Mensagem de Erro -->
+            <div id="errorMessage" class="error-message hidden">
+                <span class="error-icon">⚠️</span>
+                <p id="errorText"></p>
+            </div>
+        </main>
+
+        <footer>
+            <p>Desenvolvido com IA | © 2024</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
